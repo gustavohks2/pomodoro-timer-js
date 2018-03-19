@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #444;
+}
+
+.center-container {
+  width: 70rem;
+  min-width: 50rem;
+  margin: 0 auto;
+}
+
+.task-table {
+  width:90%;
+  margin-top: 4rem;
+  border-collapse: collapse;
+}
+
+.task-table__heading { 
+  color: #fff;
+  padding: 1.5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  background-color: #999;
+  text-transform: uppercase; 
+}
+
+

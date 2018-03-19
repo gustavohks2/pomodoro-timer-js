@@ -1,1 +1,1 @@
-# pomodoro-timer-js
+# Pomodo Timer

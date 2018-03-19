@@ -8,7 +8,34 @@
     <title>Pomodoro Timer</title>
   </head>
   <body>
-    
-    <script src="js/app.js"></script>
+
+    <div class="center-container">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th class="task-table__heading">Task name</th>
+            <th class="task-table__heading">Status (done/planned)</th>
+            <th class="task-table__heading">Controls</th>
+          </tr>
+        </thead>
+        <tbody class="js-task-table-body">
+        </tbody>
+      </table>
+  
+      <form class="js-add-task form" action="#">
+        <input class="js-task-name" type="text">
+  
+        <select class="js-pomodoro-count" name="pomodoro-count">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+  
+        <input type="submit" value="Add Task">
+      </form>
+    </div>
+
+    <script src="js/pomodoro.js"></script>
   </body>
 </html>
