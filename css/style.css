@@ -10,36 +10,27 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: #444;
 }
 
 .center-container {
   width: 70rem;
-  min-width: 50rem;
-  margin: 0 auto;
-}
-
-.task-table {
-  width:90%;
-  margin-top: 4rem;
-  text-align: center;
-  border-collapse: collapse;
-}
-
-.task-table__heading { 
-  color: #fff;
-  padding: 1.5rem;
-  font-weight: 500;
-  font-size: 1.1rem;
-  background-color: #999;
-  text-transform: uppercase; 
+  margin: 100px auto;
 }
 
 .form-task {
   margin-top: 5rem;
 }
 
+.table-elements-centered td, 
+.table-elements-centered th { text-align: center; }
 
+.u-margin-top-medium { margin-top: 2rem; }
 
+@media only screen and (max-width: 800px) {
+  .center-container {
+    width: 100%;
+    margin: 100px 0px;
+  }
+}

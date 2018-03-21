@@ -1,0 +1,23 @@
+{
+  "name": "pomodoro-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavohks2/pomodoro-timer-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustavohks2/pomodoro-timer-js/issues"
+  },
+  "homepage": "https://github.com/gustavohks2/pomodoro-timer-js#readme",
+  "dependencies": {
+    "bootstrap3": "^3.3.5",
+    "jquery": "^3.3.1"
+  }
+}

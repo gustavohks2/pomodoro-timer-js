@@ -4,38 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css?v=2">
-    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="node_modules/bootstrap3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <title>Pomodoro Tracker</title>
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <h1 class="text-info text-center">Pomodoro Tracker</h1>
+        <form class="js-add-task u-margin-top-medium" action="#">
+          <div class="form-group col-md-6 col-md-offset-3">
+            <label for="" class="sr-only">Task Name</label>
+            <input class="js-task-name form-control" type="text">
+          </div>
+  
+          <div class="form-group col-md-6 col-md-offset-3">
+            <select class="js-pomodoro-count form-control text-center" name="pomodoro-count">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <input class="btn btn-primary col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 u-margin-top-medium" type="submit" value="Add Task">
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 u-margin-top-medium">
 
-    <div class="center-container">
-      <table class="task-table">
-        <thead>
-          <tr>
-            <th class="task-table__heading">Task name</th>
-            <th class="task-table__heading">Status (done/planned)</th>
-            <th class="task-table__heading">Controls</th>
-          </tr>
-        </thead>
-        <tbody class="js-task-table-body">
-        </tbody>
-      </table>
-  
-      <form class="js-add-task form-task" action="#">
-        <input class="js-task-name" type="text">
-  
-        <select class="js-pomodoro-count" name="pomodoro-count">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-  
-        <input type="submit" value="Add Task">
-      </form>
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped table-condensed table-elements-centered">
+              <thead>
+                <tr>
+                  <th>Task name</th>
+                  <th>Status (done/planned)</th>
+                  <th>Controls</th>
+                </tr>
+              </thead>
+              <tbody class="js-task-table-body">
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
     </div>
 
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="js/pomodoro.js"></script>
   </body>
 </html>

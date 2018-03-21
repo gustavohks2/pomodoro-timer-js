@@ -1,16 +1,16 @@
-(function() {
+$(document).ready(function() {
   "use strict";
 
-  const tasks = [];
+  const tasks = JSON.parse(localStorage.getItem("tasks") || null) || [];
 
-  const pomodoroForm = document.querySelector(".js-add-task");
-  const pomodoroTableBody = document.querySelector(".js-task-table-body");
+  const pomodoroForm = $(".js-add-task");
+  const pomodoroTableBody = $(".js-task-table-body");
 
   const addTask = function(evt) {
     evt.preventDefault();
 
-    const taskName = this.querySelector(".js-task-name").value;
-    const pomodoroCount = this.querySelector(".js-pomodoro-count").value;
+    const taskName = $(".js-task-name").val();
+    const pomodoroCount = $(".js-pomodoro-count").val();
 
     tasks.push({
       taskName,
@@ -19,29 +19,32 @@
       pomodoroFinished: false
     });
 
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
     this.reset();
 
     renderTasks(pomodoroTableBody, tasks);
   }
 
-  const renderTasks = function(tBodyElement, tasks = []) {
-    tBodyElement.innerHTML = tasks.map((task, i) => `
+  const renderTasks = (tBodyElement, tasks = []) => {
+
+    tBodyElement.html(tasks.map((task, i) => `
         <tr>
           <td class="cell-task-name">${task.taskName}</td>
           <td class="cell-pom-count">${task.pomodoroDone} / ${task.pomodoroCount} pomodoris</td>
           <td class="cell-pom-controls">
-          ${task.pomodoroFinished ? 'Finished |' : `
-            <button class="js-task-done" data-id="${i}">Done</button>
-            <button class="js-increase-pomodoro" data-id="${i}">+1 Pom</button> 
+          ${task.pomodoroFinished ? '<span class="text-success">Finished</span> |' : `
+            <button class="js-task-done btn btn-info" data-id="${i}">Done</button>
+            <button class="js-increase-pomodoro btn btn-info" data-id="${i}">+1 Pom</button> 
           `}
-            <button class="js-delete-task" data-id="${i}">Delete Task</button>
+            <button class="js-delete-task btn btn-danger" data-id="${i}">Delete Task</button>
           </td>
         </tr>
       `
-    ).join("\n");
+    ).join("\n"));
   }
 
-  const handleTaskButtonClick = function(evt) {
+  const handleTaskButtonClick = evt => {
     const elClassList = evt.target.classList;
     const elTaskId = evt.target.getAttribute("data-id");
 
@@ -49,14 +52,32 @@
     elClassList.contains("js-increase-pomodoro") ? increasePomodoro(tasks, elTaskId):
     elClassList.contains("js-delete-task") ? deleteTask(tasks, elTaskId) : null;
 
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
     renderTasks(pomodoroTableBody, tasks);
   }
 
-  const finishTask = function(tasks, taskId) { tasks[taskId].pomodoroFinished = true; }
-  const increasePomodoro = function(tasks, taskId) { tasks[taskId].pomodoroDone++; }
-  const deleteTask = function(tasks, taskId) { tasks.splice(taskId, 1) }
+  const handleDoubleClick = function(evt) {
+    console.log("asdf");
+  }
 
-  pomodoroTableBody.addEventListener("click", handleTaskButtonClick);
-  pomodoroForm.addEventListener("submit", addTask);
+  const finishTask = (tasks, taskId) => { tasks[taskId].pomodoroFinished = true; }
+  const deleteTask = (tasks, taskId) => { tasks.splice(taskId, 1); }
 
-})();
+  const increasePomodoro = (tasks, taskId) => { 
+    const limit = tasks[taskId].pomodoroCount;
+    
+    if (tasks[taskId].pomodoroDone + 1 == limit) {
+      tasks[taskId].pomodoroDone++;
+      finishTask(tasks, taskId);
+      return;
+    }
+
+    tasks[taskId].pomodoroDone++;
+  }
+
+  pomodoroTableBody.on("click", handleTaskButtonClick);
+  pomodoroForm.on("submit", addTask);
+
+  renderTasks(pomodoroTableBody, tasks);
+});
