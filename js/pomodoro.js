@@ -9,8 +9,10 @@ $(document).ready(function() {
   const addTask = function(evt) {
     evt.preventDefault();
 
-    const taskName = $(".js-task-name").val();
+    const taskName = $(".js-task-name").val().trim();
     const pomodoroCount = $(".js-pomodoro-count").val();
+
+    if (taskName.length < 3) return;
 
     tasks.push({
       taskName,
@@ -61,7 +63,11 @@ $(document).ready(function() {
     console.log("asdf");
   }
 
-  const finishTask = (tasks, taskId) => { tasks[taskId].pomodoroFinished = true; }
+  const finishTask = (tasks, taskId) => { 
+    tasks[taskId].pomodoroFinished = true; 
+    tasks[taskId].pomodoroDone = tasks[taskId].pomodoroCount;
+  }
+
   const deleteTask = (tasks, taskId) => { tasks.splice(taskId, 1); }
 
   const increasePomodoro = (tasks, taskId) => { 
